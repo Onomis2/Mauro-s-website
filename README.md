@@ -1,0 +1,4 @@
+This website was a request by my good friend Mauro. They needed a simple tool that lists pictures of structures with the ability to sort by tags. They wanted to be able to upload any image and give it any tag like tudor, gothic, modern, glass, etc. I suggested a user system so that they had the ability to add/edit images and their tags but their teachers could view the website.
+
+Planned functions:
+The website is supposed to be simple. It has to have a few basic functions which are a user system and a database for images and tags. Images should be able to get tagged, and be querried by users by tag. Privelaged users should be able to upload/edit/delete the images/tags.
