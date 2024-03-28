@@ -1,3 +1,8 @@
+<?php
+
+include "universalpages/activate.php";
+$currentPage = 'home';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +13,7 @@
 </head>
 
 <body>
-    <a href=../database/userhandling.php>Logout</a>
+    <?php include_once("universalpages/navbar.php"); ?>
+    <p>Mauro's website</p>
 </body>
-
 </html>
