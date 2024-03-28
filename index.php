@@ -8,4 +8,3 @@ if (isset($_SESSION["username"])) {
     header("location: database/userhandling.php");
     exit();
 }
-?>
