@@ -15,6 +15,7 @@ if (isset($_POST['checktag'])) {
         $query .= "FIND_IN_SET(?, tag1) OR FIND_IN_SET(?, tag2) OR FIND_IN_SET(?, tag3) OR FIND_IN_SET(?, tag4) OR FIND_IN_SET(?, tag5) OR FIND_IN_SET(?, tag6) OR FIND_IN_SET(?, tag7) OR FIND_IN_SET(?, tag8) OR FIND_IN_SET(?, tag9) OR FIND_IN_SET(?, tag10) OR FIND_IN_SET(?, tag11) OR FIND_IN_SET(?, tag12) OR FIND_IN_SET(?, tag13) OR FIND_IN_SET(?, tag14) OR FIND_IN_SET(?, tag15) OR FIND_IN_SET(?, tag16) OR FIND_IN_SET(?, tag17) OR FIND_IN_SET(?, tag18) OR FIND_IN_SET(?, tag19) OR FIND_IN_SET(?, tag20) OR ";
     }
     $query = rtrim($query, 'OR ');
+    $query .= " ORDER BY image_id DESC";
 
     $imagedata = $dbh->prepare($query);
 
@@ -38,6 +39,7 @@ $tagdata = $dbh->prepare("SELECT * FROM tags");
 $tagdata->execute();
 $tags = $tagdata->fetchAll(PDO::FETCH_ASSOC);
 
+$isChecked = false;
 ?>
 
 
@@ -57,17 +59,18 @@ $tags = $tagdata->fetchAll(PDO::FETCH_ASSOC);
     <?php include_once "universalpages/navbar.php"; ?>
     <p>Search bar and filter tag</p>
     <form action="images.php" method="post">
-    <?php foreach ($tags as $tag) : ?>
-        <div class=tag>
-            <?php
-            $isChecked = in_array($tag['tag_id'], $_POST['checktag']);
-            ?>
-            <input type="checkbox" value="<?= $tag['tag_id']; ?>" name="checktag[]" <?php if ($isChecked) {
+        <?php foreach ($tags as $tag) : ?>
+            <div class=tag>
+                <?php if (isset($_POST["checktag"])) {
+                    $isChecked = in_array($tag['tag_id'], $_POST['checktag']);
+                }
+                ?>
+                <input type="checkbox" value="<?= $tag['tag_id']; ?>" name="checktag[]" <?php if ($isChecked) {
                                                                                             echo "checked='checked'";
                                                                                         }; ?>>
-            <?= $tag['tag_name']; ?>
-        </div>
-    <?php endforeach; ?>
+                <?= $tag['tag_name']; ?>
+            </div>
+        <?php endforeach; ?>
         <br>
         <input type="submit" value="Submit">
     </form>
