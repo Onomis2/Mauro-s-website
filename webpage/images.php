@@ -50,31 +50,40 @@ $tags = $tagdata->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browse</title>
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/content.css">
 </head>
 
 <body>
     <?php include_once "universalpages/navbar.php"; ?>
     <p>Search bar and filter tag</p>
     <form action="images.php" method="post">
-        <?php foreach ($tags as $tag) : ?>
-            <input type="checkbox" value="<?= $tag['tag_id']; ?>" name="checktag[]"><?= $tag['tag_name']; ?>
-        <?php endforeach; ?>
+    <?php foreach ($tags as $tag) : ?>
+        <div class=tag>
+            <?php
+            $isChecked = in_array($tag['tag_id'], $_POST['checktag']);
+            ?>
+            <input type="checkbox" value="<?= $tag['tag_id']; ?>" name="checktag[]" <?php if ($isChecked) {
+                                                                                            echo "checked='checked'";
+                                                                                        }; ?>>
+            <?= $tag['tag_name']; ?>
+        </div>
+    <?php endforeach; ?>
         <br>
         <input type="submit" value="Submit">
     </form>
-    <p>if database, width larger than 1680 3 horizontally, infinite vertically, between 1680 and 840 horizontally 2, infinite vertical, under 840 infinite vertical just 1 horizontal</p>
+    <p>width larger than 1680 3 horizontally, infinite vertically, between 1680 and 840 horizontally 2, infinite vertical, under 840 infinite vertical just 1 horizontal</p>
 
-    <!--Reminder!: Put the div classes in a new styles folder!!-->
     <?php foreach ($images as $image) : ?>
         <div class="image">
             <p>Source: <?= $image['source']; ?></p>
+            <p><a href=../database/imagehandling.php?id=<?= $image['image_id']; ?>><img src="../database/imagehandling.php?id=<?= $image['image_id']; ?>" alt="" width="300px" height="200px" class=actualimage></a></p>
             <p>Tags: <?php for ($i = 1; $i < 20; $i++) {
-                if (isset($image["tag$i"])) {
-                    echo '<div class="tag">' . $tags[($image["tag$i"] - 1)]["tag_name"] . "</div>";
-                } else {
-                    $i = 21;
-                }
-            }; ?></p>
+                            if (isset($image["tag$i"])) {
+                                echo '<div class="tag">' . $tags[($image["tag$i"] - 1)]["tag_name"] . "</div>";
+                            } else {
+                                $i = 21;
+                            }
+                        }; ?></p>
         </div>
     <?php endforeach; ?>
 

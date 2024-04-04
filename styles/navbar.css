@@ -20,22 +20,3 @@ nav {
     padding-right: 2%;
     padding-left: 8%;
 }
-.temp {
-    background-color: aqua;
-}
-.tag {
-    display: inline-block;
-    background-color: violet;
-    padding: 0.1%;
-    margin: 5px;
-    border-style: solid;
-    border-color: black;
-    border-radius: 3px;
-    border-width:2px
-}
-.image {
-    margin-left: 3%;
-    margin-right: 5%;
-    border-style: solid;
-    border-width: 5px;
-}
