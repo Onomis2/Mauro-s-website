@@ -25,3 +25,53 @@
     border-width: 5px;
     border-radius: 7px;
 }
+
+.error {
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.insertTag {
+    display: inline-block;
+    background-color: rgb(217, 196, 169);
+    width: 675px;
+    height: 500px;
+    padding-right: 1%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 7px;
+}
+
+.insertTag h1{
+    padding-left: 5px;
+}
+
+.insertTag p{
+    padding-left: 5px;
+}
+
+.insertImage {
+    display: inline-block;
+    background-color: rgb(217, 196, 169);
+    width: 675px;
+    height: 500px;
+    padding-right: 1%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 7px;
+}
+
+.insertImage h1{
+    padding-left: 5px;
+}
+
+.insertImage p{
+    padding-left: 5px;
+}

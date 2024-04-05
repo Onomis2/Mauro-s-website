@@ -38,7 +38,8 @@ tag20 INT(16)
 
 CREATE TABLE tags (
     tag_id INT AUTO_INCREMENT PRIMARY KEY,
-    tag_name VARCHAR(255) NOT NULL
+    tag_name VARCHAR(255) NOT NULL,
+    tag_color VARCHAR(6) NOT NULL
 );
 
 INSERT INTO

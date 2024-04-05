@@ -66,8 +66,8 @@ $isChecked = false;
                 }
                 ?>
                 <input type="checkbox" value="<?= $tag['tag_id']; ?>" name="checktag[]" <?php if ($isChecked) {
-                                                                                            echo "checked='checked'";
-                                                                                        }; ?>>
+                                                                                                            echo "checked='checked'";
+                                                                                                        }; ?>>
                 <?= $tag['tag_name']; ?>
             </div>
         <?php endforeach; ?>
