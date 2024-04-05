@@ -25,13 +25,16 @@ if (!empty($_POST['addTag'])) {
         try {
             $sthInsert->execute();
             $outputMessage = "Successfully added new tag to the database with name \"$tagName\" and color <span style=\"color: " . htmlspecialchars($tagColor) . ";\">$tagColor</span>";
+            $outputMessageEncoded = urlencode($outputMessage);
+            header("Location: insert.php?error=$outputMessageEncoded");
+            exit();
         } catch (PDOException $e) {
             $outputMessage = 'Insert failed: ' . $e->getMessage();
         }
     } else {
         $outputMessage = "Error adding tag. Both name and color are required.";
     }
-} elseif (empty($_POST['addImage'])) {
+} elseif (empty($_POST['addImage']) && !empty($_POST['addTag'])) {
     $outputMessage = "Error adding tag. No name was entered.";
 } elseif (!empty($_POST["addImage"])) {
     $imageSource = $_POST['imageSource'];
@@ -50,17 +53,17 @@ if (!empty($_POST['addTag'])) {
             if (!empty($_POST['checktag'])) {
                 foreach ($_POST['checktag'] as $tagId) {
                     $tagId = (int)$tagId;
-                    if ($tagId > 0 && $tagId <= 20) {
-                        $tagField = 'tag' . $tagnum++;
-                        $tagUpdate = $dbh->prepare("UPDATE images SET $tagField = :tagId WHERE image_id = :imageId");
-                        $tagUpdate->bindParam(':imageId', $imageId);
-                        $tagUpdate->bindValue(':tagId', $tagId);
-                        $tagUpdate->execute();
-                    }
+                    $tagField = 'tag' . $tagnum++;
+                    $tagUpdate = $dbh->prepare("UPDATE images SET $tagField = :tagId WHERE image_id = :imageId");
+                    $tagUpdate->bindParam(':imageId', $imageId);
+                    $tagUpdate->bindValue(':tagId', $tagId);
+                    $tagUpdate->execute();
                 }
             }
 
             $outputMessage = "Successfully added new image to the database.";
+            header("location: insert.php?error=$outputMessage");
+            exit();
         } catch (PDOException $e) {
             $outputMessage = "Error adding image: " . $e->getMessage();
         }
@@ -98,6 +101,8 @@ if (!empty($_POST['addTag'])) {
         </div>
         <?php if (isset($outputMessage)) : ?>
             <h1 class="error"><?= $outputMessage; ?></h1>
+        <?php elseif (isset($_GET['error'])) : ?>
+            <h1 class="error"><?= $_GET['error']; ?></h1>
         <?php endif; ?>
         <div class="insertTag">
             <h1>Add a new tag to the database</h1>

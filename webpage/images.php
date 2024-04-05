@@ -77,18 +77,29 @@ $isChecked = false;
     <p>width larger than 1680 3 horizontally, infinite vertically, between 1680 and 840 horizontally 2, infinite vertical, under 840 infinite vertical just 1 horizontal</p>
 
     <?php foreach ($images as $image) : ?>
-        <div class="image">
-            <p>Source: <?= $image['source']; ?></p>
-            <p><a href=../database/imagehandling.php?id=<?= $image['image_id']; ?>><img src="../database/imagehandling.php?id=<?= $image['image_id']; ?>" alt="" width="300px" height="200px" class=actualimage></a></p>
-            <p>Tags: <?php for ($i = 1; $i < 20; $i++) {
-                            if (isset($image["tag$i"])) {
-                                echo '<div class="tag">' . $tags[($image["tag$i"] - 1)]["tag_name"] . "</div>";
-                            } else {
-                                $i = 21;
-                            }
-                        }; ?></p>
-        </div>
-    <?php endforeach; ?>
+    <div class="image">
+        <p>Source: <?= $image['source']; ?></p>
+        <p><a href=../database/imagehandling.php?id=<?= $image['image_id']; ?>><img src="../database/imagehandling.php?id=<?= $image['image_id']; ?>" alt="" width="300px" height="200px" class=actualimage></a></p>
+        <p>Tags: <?php 
+            for ($i = 1; $i <= 20; $i++) {
+                if (!empty($image["tag$i"])) {
+                    $tagId = $image["tag$i"];
+                    $tagName = '';
+                    foreach ($tags as $tag) {
+                        if ($tag['tag_id'] == $tagId) {
+                            $tagName = $tag['tag_name'];
+                            break;
+                        }
+                    }
+                    echo '<div class="tag">' . $tagName . "</div>";
+                } else {
+                    break;
+                }
+            }
+        ?></p>
+    </div>
+<?php endforeach; ?>
+
 
 </body>
 
