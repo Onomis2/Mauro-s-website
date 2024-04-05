@@ -74,7 +74,6 @@ $isChecked = false;
         <br>
         <input type="submit" value="Submit">
     </form>
-    <p>width larger than 1680 3 horizontally, infinite vertically, between 1680 and 840 horizontally 2, infinite vertical, under 840 infinite vertical just 1 horizontal</p>
 
     <?php foreach ($images as $image) : ?>
     <div class="image">
