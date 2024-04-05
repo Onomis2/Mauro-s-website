@@ -4,15 +4,14 @@ include "universalpages/activate.php";
 require_once("../database/connection.php");
 $currentPage = 'insert';
 $tagnum = 1;
-
 $tagdata = $dbh->prepare("SELECT * FROM tags");
 $tagdata->execute();
 $tags = $tagdata->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($_POST['addTag'])) {
     if (!empty($_POST['tagName']) && !empty($_POST['tagColor'])) {
-        $tagName = $_POST['tagName'];
-        $tagColor = $_POST['tagColor'];
+        $tagName = htmlspecialchars($_POST['tagName']);
+        $tagColor = htmlspecialchars($_POST['tagColor']);
 
         $sthInsert = $dbh->prepare(
             "INSERT INTO tags (tag_name, tag_color)
@@ -37,7 +36,7 @@ if (!empty($_POST['addTag'])) {
 } elseif (empty($_POST['addImage']) && !empty($_POST['addTag'])) {
     $outputMessage = "Error adding tag. No name was entered.";
 } elseif (!empty($_POST["addImage"])) {
-    $imageSource = $_POST['imageSource'];
+    $imageSource = htmlspecialchars($_POST['imageSource']);
 
     if (!empty($_FILES['imageImage']['tmp_name']) && is_uploaded_file($_FILES['imageImage']['tmp_name'])) {
         $imageData = file_get_contents($_FILES['imageImage']['tmp_name']);
