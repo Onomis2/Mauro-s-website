@@ -2,6 +2,7 @@
 
 include "universalpages/activate.php";
 require_once("../database/connection.php");
+include '../database/trustedusers.php';
 $currentPage = 'insert';
 $tagnum = 1;
 $tagdata = $dbh->prepare("SELECT * FROM tags");
@@ -90,13 +91,13 @@ if (!empty($_POST['addTag'])) {
     Have 2 divs next to each other, left for adding tags, right for adding images. Make sure to add correct handling so that errors pop up whenever a required value is not added or invalid. -->
 
     <!--Later interchangable with $_session["admin"] if needed, this code is redundant for now as this page is unaccesible for logged out users currently.-->
-    <?php if (!isset($_SESSION["username"])) : ?>
-        <div>
-            <h1>You have to be logged in to view this page</h1>
+    <?php if (!in_array($_SESSION['user'], $trustedUsers)) : ?>
+        <div class="error">
+            <h1>You have to be an admin to view this page</h1>
         </div>
     <?php else : ?>
         <div>
-            <h1>Wecome, <?= $_SESSION["username"]; ?>!</h1>
+            <h1>Welcome, <?= $_SESSION["username"]; ?>!</h1>
         </div>
         <?php if (isset($outputMessage)) : ?>
             <h1 class="error"><?= $outputMessage; ?></h1>

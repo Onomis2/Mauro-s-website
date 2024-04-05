@@ -7,7 +7,8 @@ USE maurowebsite;
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
-    password VARCHAR(256) NOT NULL
+    password VARCHAR(256) NOT NULL,
+    admin ENUM('NO', 'YES') NOT NULL
 );
 
 CREATE TABLE images (
