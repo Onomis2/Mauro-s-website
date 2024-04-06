@@ -1,7 +1,6 @@
 <?php
 
 require_once 'connection.php';
-session_start();
 $wrong = false;
 
 if (isset($_SESSION['username'])) {
@@ -12,7 +11,6 @@ if (isset($_SESSION['username'])) {
 //Executes code if a post is detected
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
     //Converts posts into regular variables
 
     $username = $_POST['username'];
@@ -33,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['username'] = $user['username'];
         $_SESSION['id'] = $user['id'];
+        $_SESSION['is_admin'] = $user['admin'];
         header('Location: ../index.php');
         exit();
     } else {

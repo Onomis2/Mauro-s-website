@@ -1,6 +1,7 @@
 <?php
 
-    //Establishes connection to the database with name maurowebsite
+session_start();
+//Establishes connection to the database with name maurowebsite
     
 $dsn = 'mysql:host=localhost;dbname=maurowebsite';
 $username = 'bit_academy';
