@@ -1,7 +1,7 @@
 <?php
 
-include "universalpages/activate.php";
-require_once("../database/connection.php");
+
+include("../database/connection.php");
 $currentPage = 'browse';
 
 if (isset($_POST['checktag'])) {
@@ -68,7 +68,7 @@ $isChecked = false;
                 ?>
                 <input type="checkbox" value="<?= $tag['tag_id']; ?>" name="checktag[]" <?php if ($isChecked) {
                                                                                                             echo "checked='checked'";
-                                                                                                        }; ?>>
+                                                                                                        };
                 <?= $tag['tag_name']; ?>
             </div>
         <?php endforeach; ?>

@@ -1,6 +1,6 @@
 <?php
 
-include "universalpages/activate.php";
+include '../database/connection.php';
 $currentPage = 'home';
 ?>
 <!DOCTYPE html>
