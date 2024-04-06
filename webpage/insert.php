@@ -91,7 +91,7 @@ if (!empty($_POST['addTag'])) {
     Have 2 divs next to each other, left for adding tags, right for adding images. Make sure to add correct handling so that errors pop up whenever a required value is not added or invalid. -->
 
     <!--Later interchangable with $_session["admin"] if needed, this code is redundant for now as this page is unaccesible for logged out users currently.-->
-    <?php if (!in_array($_SESSION['username'], $trustedUsers)) : ?>
+    <?php if (!isset($_SESSION['username']) && $_SESSION['admin'] == 'YES') : ?>
         <div class="error">
             <h1>You have to be an admin to view this page</h1>
         </div>

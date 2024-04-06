@@ -40,23 +40,18 @@ tag20 INT(16)
 CREATE TABLE tags (
     tag_id INT AUTO_INCREMENT PRIMARY KEY,
     tag_name VARCHAR(255) NOT NULL,
-    tag_color VARCHAR(6) NOT NULL
+    tag_color VARCHAR(8) NOT NULL
 );
 
 INSERT INTO
-    users (username, password)
+users (username, password, admin)
 VALUES
     (
-        'admin',
-        '$2y$10$dU8n53kNNv4tzUUloptXSeH.2V914dhfB9Xaq.qgZnWLEOw9Vnq0y'
+    'admin',
+    '$2y$10$dU8n53kNNv4tzUUloptXSeH.2V914dhfB9Xaq.qgZnWLEOw9Vnq0y',
+    'YES'
     );
-INSERT INTO
-    tags (tag_name)
-VALUES
-    ('Gothic'),
-    ('Glass'),
-    ('Skyscraper'),
-    ('Victorian');
+
 INSERT INTO images (source, tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8, tag9, tag10, tag11, tag12, tag13, tag14, tag15, tag16, tag17, tag18, tag19, tag20) 
 VALUES 
     ('Hoorn', '4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -64,4 +59,9 @@ VALUES
     ('Bovenkarspel', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
     ('Grootebroek', '1', '2', '3', '4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
-
+INSERT INTO tags (tag_name, tag_color)
+VALUES
+    ('Hoorn', '#FF0000'),
+    ('Enkhuizen', '#00FF00'),
+    ('Bovenkarspel', '#0000FF'),
+    ('Grootebroek', '#FFFF00');
