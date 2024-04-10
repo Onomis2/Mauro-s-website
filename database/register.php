@@ -59,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/content.css">
 </head>
 
 <body>
@@ -70,14 +71,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!--Form for users to input their information-->
 
     <div class="login">
+        <h1>Register</h1>
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            <p><?= $error; ?></p>
+            <p class="error"><?= $error; ?></p>
             <br>
             <input type="text" placeholder="username" name="username">
             <br>
             <input type="password" placeholder="password" name="password">
             <br>
             <input type="submit" value="Register!">
+            <p><a href=userhandling.php>Go back</a></p>
         </form>
     </div>
 </body>

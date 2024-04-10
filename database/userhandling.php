@@ -48,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, length=device-length, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/content.css">
 </head>
 
 <body>
@@ -59,16 +60,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!--Login submission form-->
 
     <div class="login">
+        <h1>Log in</h1>
         <?php if ($wrong == true) : ?>
-            <p>Invalid username or password.</p>
+            <p class="error">Invalid username or password.</p>
         <?php endif; ?>
         <form method="post">
             <input type="text" placeholder="username" name="username">
             <br>
             <input type="password" placeholder="password" name="password">
-            <br>
-            <a href="edituser.php">Forgot password?</a>
-            <input type="submit" value="Login">
+            <p><input type="submit" value="Login"></p>
             <p><a href="register.php">Register</a></p>
         </form>
     </div>
