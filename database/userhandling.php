@@ -15,6 +15,9 @@ if (isset($_GET['message'])) {
             echo "You have been logged out because of a website update that requires a log-out.";
             break;
         
+        case '2':
+            echo "No user detected, please log in.";
+            break;
         default:
             echo 'Unknown error. You have been logged out automatically.';
             break;
