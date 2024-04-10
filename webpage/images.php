@@ -53,6 +53,7 @@ $isChecked = false;
     <title>Browse</title>
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/content.css">
+    <link rel="icon" href="../images/Kirby_logo" type="image/x-icon">
 </head>
 
 <body>
