@@ -124,7 +124,7 @@ if (!empty($_POST['addTag'])) {
                 <p>Image: <input type=file name=imageImage id=imageImage></p>
                 <p>Select tags (maximum of 20)</p>
                 <?php foreach ($tags as $tag) : ?>
-                    <div class="tag">
+                    <div class="tag" style="background-color: <?= $tag['tag_color']; ?>">
                         <input type="checkbox" value="<?= $tag['tag_id']; ?>" name="checktag[]">
                         <?= $tag['tag_name']; ?>
                     </div>

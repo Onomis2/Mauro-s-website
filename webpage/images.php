@@ -61,7 +61,7 @@ $isChecked = false;
     <p>Search bar and filter tag</p>
     <form action="images.php" method="post">
         <?php foreach ($tags as $tag) : ?>
-            <div class=tag>
+            <div class=tag style="background-color: <?= $tag['tag_color']; ?>">
                 <?php if (isset($_POST["checktag"])) {
                     $isChecked = in_array($tag['tag_id'], $_POST['checktag']);
                 }
@@ -91,7 +91,7 @@ $isChecked = false;
                             break;
                         }
                     }
-                    echo '<div class="tag">' . $tagName . "</div>";
+                    echo '<div class="tag" style="background-color: ' . $tag['tag_color'] . '">' . $tagName . '</div>';
                 } else {
                     break;
                 }
