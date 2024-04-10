@@ -9,6 +9,18 @@ if (isset($_SESSION['username'])) {
     echo "Succesfully logged out.";
 }
 
+if (isset($_GET['message'])) {
+    switch ($_GET['message']) {
+        case '1':
+            echo "You have been logged out because of a website update that requires a log-out.";
+            break;
+        
+        default:
+            echo 'Unknown error. You have been logged out automatically.';
+            break;
+    }
+}
+
 //Executes code if a post is detected
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -33,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['username'] = $user['username'];
         $_SESSION['id'] = $user['id'];
+        $_SESSION['admin'] = $user['admin'];
         header('Location: ../index.php');
         exit();
     } else {
