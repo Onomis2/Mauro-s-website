@@ -73,7 +73,7 @@ $isChecked = false;
             </div>
         <?php endforeach; ?>
         <br>
-        <input type="submit" value="Submit">
+        <p><input type="submit" value="Filter on these tags"></p>
     </form>
 
     <?php foreach ($images as $image) : ?>
