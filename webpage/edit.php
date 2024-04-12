@@ -2,6 +2,10 @@
 
 include "universalpages/activate.php";
 require_once("../database/connection.php");
+if ($_SESSION['admin'] !== "YES") {
+    session_destroy();
+    header("location: ../database/userhandling.php?message=3");
+}
 $currentPage = 'insert';
 
 $tagdata = $dbh->prepare("SELECT * FROM tags WHERE tag_id = :id");

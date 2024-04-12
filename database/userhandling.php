@@ -18,6 +18,9 @@ if (isset($_GET['message'])) {
         case '2':
             echo "No user detected, please log in.";
             break;
+        case '3':
+            echo "Illegal action. You have been logged out.";
+            break;
         default:
             echo 'Unknown error. You have been logged out automatically.';
             break;
