@@ -51,17 +51,10 @@ VALUES
         '$2y$10$dU8n53kNNv4tzUUloptXSeH.2V914dhfB9Xaq.qgZnWLEOw9Vnq0y'
     );
 INSERT INTO
-    tags (tag_name)
+    tags (tag_name, tag_color)
 VALUES
-    ('Gothic'),
-    ('Glass'),
-    ('Skyscraper'),
-    ('Victorian');
-INSERT INTO images (source, tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8, tag9, tag10, tag11, tag12, tag13, tag14, tag15, tag16, tag17, tag18, tag19, tag20) 
-VALUES 
-    ('Hoorn', '4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-    ('Enkhuizen', '3', '2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-    ('Bovenkarspel', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-    ('Grootebroek', '1', '2', '3', '4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-
+    ('Gothic', '#f2a933'),
+    ('Glass', '#b37289'),
+    ('Skyscraper', '#982310'),
+    ('Victorian', '#b128911');
 

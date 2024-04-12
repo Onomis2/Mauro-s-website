@@ -58,47 +58,52 @@ $isChecked = false;
 
 <body>
     <?php include_once "universalpages/navbar.php"; ?>
-    <p>Search bar and filter tag</p>
-    <form action="images.php" method="post">
-        <?php foreach ($tags as $tag) : ?>
-            <div class=tag style="background-color: <?= $tag['tag_color']; ?>">
-                <?php if (isset($_POST["checktag"])) {
-                    $isChecked = in_array($tag['tag_id'], $_POST['checktag']);
-                }
-                ?>
-                <input type="checkbox" value="<?= $tag['tag_id']; ?>" name="checktag[]" <?php if ($isChecked) {
-                                                                                                            echo "checked='checked'";
-                                                                                                        }; ?>>
-                <?= $tag['tag_name']; ?>
-            </div>
-        <?php endforeach; ?>
-        <br>
-        <p><input type="submit" value="Filter on these tags"></p>
-    </form>
+    <details>
+        <summary style="padding-top:2%; padding-left:2%; padding-bottom:1%;">Search bar and filter for tags</summary>
+        <form action="images.php" method="post">
+            <?php foreach ($tags as $tag) : ?>
+                <div class=tag style="background-color: <?= $tag['tag_color']; ?>">
+                    <?php if (isset($_POST["checktag"])) {
+                        $isChecked = in_array($tag['tag_id'], $_POST['checktag']);
+                    }
+                    ?>
+                    <input type="checkbox" value="<?= $tag['tag_id']; ?>" name="checktag[]" <?php if ($isChecked) {
+                                                                                                echo "checked='checked'";
+                                                                                            }; ?>>
+                    <?= $tag['tag_name']; ?>
+                </div>
+            <?php endforeach; ?>
+            <br>
+            <p><input type="submit" value="Filter on these tags"></p>
+        </form>
+    </details>
 
     <?php foreach ($images as $image) : ?>
-    <div class="image">
-        <p>Source: <?= $image['source']; ?></p>
-        <p><a href=../database/imagehandling.php?id=<?= $image['image_id']; ?>><img src="../database/imagehandling.php?id=<?= $image['image_id']; ?>" alt="" width="300px" height="200px" class=actualimage></a></p>
-        <p>Tags: <?php 
-            for ($i = 1; $i <= 20; $i++) {
-                if (!empty($image["tag$i"])) {
-                    $tagId = $image["tag$i"];
-                    $tagName = '';
-                    foreach ($tags as $tag) {
-                        if ($tag['tag_id'] == $tagId) {
-                            $tagName = $tag['tag_name'];
-                            break;
+        <div class="image">
+            <?php if ($_SESSION['admin'] == 'YES') : ?>
+                <p><a href=edit.php?type=img&id=<?= $image['image_id']; ?>>Edit this entry</a></p>
+            <?php endif; ?>
+            <p>Source: <?= $image['source']; ?></p>
+            <p><a href=../database/imagehandling.php?id=<?= $image['image_id']; ?>><img src="../database/imagehandling.php?id=<?= $image['image_id']; ?>" alt="" width="300px" height="200px" class=actualimage></a></p>
+            <p>Tags: <?php
+                        for ($i = 1; $i <= 20; $i++) {
+                            if (!empty($image["tag$i"])) {
+                                $tagId = $image["tag$i"];
+                                $tagName = '';
+                                foreach ($tags as $tag) {
+                                    if ($tag['tag_id'] == $tagId) {
+                                        $tagName = $tag['tag_name'];
+                                        break;
+                                    }
+                                }
+                                echo '<div class="tag" style="background-color: ' . $tag['tag_color'] . '">' . $tagName . '</div>';
+                            } else {
+                                break;
+                            }
                         }
-                    }
-                    echo '<div class="tag" style="background-color: ' . $tag['tag_color'] . '">' . $tagName . '</div>';
-                } else {
-                    break;
-                }
-            }
-        ?></p>
-    </div>
-<?php endforeach; ?>
+                        ?></p>
+        </div>
+    <?php endforeach; ?>
 
 
 </body>

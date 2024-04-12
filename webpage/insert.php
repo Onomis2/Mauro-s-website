@@ -8,6 +8,11 @@ $tagdata = $dbh->prepare("SELECT * FROM tags");
 $tagdata->execute();
 $tags = $tagdata->fetchAll(PDO::FETCH_ASSOC);
 
+$imagedata = $dbh->prepare("SELECT * FROM images");
+$imagedata->execute();
+$images = $imagedata->fetchAll(PDO::FETCH_ASSOC);
+
+
 if (!empty($_POST['addTag'])) {
     if (!empty($_POST['tagName']) && !empty($_POST['tagColor'])) {
         $tagName = htmlspecialchars($_POST['tagName']);
@@ -31,7 +36,7 @@ if (!empty($_POST['addTag'])) {
             $outputMessage = 'Insert failed: ' . $e->getMessage();
         }
     } else {
-        $outputMessage = "Error adding tag. Both name and color are required.";
+        $outputMessage = "Error adding tag. A name is required.";
     }
 } elseif (empty($_POST['addImage']) && !empty($_POST['addTag'])) {
     $outputMessage = "Error adding tag. No name was entered.";
@@ -92,7 +97,7 @@ if (!empty($_POST['addTag'])) {
 
     <!--Later interchangable with $_session["admin"] if needed, this code is redundant for now as this page is unaccesible for logged out users currently.-->
     <!--Changed it to $_session['admin'] for extra security as it was needed.-->
-    <?php if ($_SESSION['admin'] == 'NO' || !isset($_SESSION['admin'])): ?>
+    <?php if ($_SESSION['admin'] == 'NO' || !isset($_SESSION['admin'])) : ?>
         <div class="error">
             <h1>You have to be an admin to view this page</h1>
         </div>
@@ -131,6 +136,13 @@ if (!empty($_POST['addTag'])) {
                 <?php endforeach; ?>
                 <p><input type="submit" value="Add Image!"></p>
             </form>
+        </div>
+
+        <div class="">
+            <h1>edit an exiting tag from the database</h1>
+            <?php foreach ($tags as $tag) : ?>
+                <?php echo '<div class="tag" style="background-color:' . $tag['tag_color'] . '"><a href="edit.php?temp=new&type=tag&id=' . $tag['tag_id'] . '">' . $tag['tag_name'] . '</a></div>'; ?>
+            <?php endforeach; ?>
         </div>
     <?php endif; ?>
 </body>
